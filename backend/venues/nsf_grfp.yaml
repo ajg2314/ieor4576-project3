@@ -1,0 +1,18 @@
+venue: nsf_grfp
+name: "NSF Graduate Research Fellowship Program application"
+expected_length_minutes: 0
+scoring_criteria:
+  - "Intellectual Merit — research potential, rigor, and preparedness"
+  - "Broader Impacts — concrete benefit, outreach, teaching, mentoring, or societal relevance"
+  - "Coherence between personal statement, research plan, and future trajectory"
+  - "Feasibility and clarity of proposed research direction"
+  - "Evidence of initiative and capacity for independent research"
+common_rejection_reasons:
+  - "Broader impacts are generic or disconnected from the applicant's actual commitments"
+  - "Research plan is too vague or too ambitious"
+  - "Personal statement lists activities without showing growth or research potential"
+  - "Intellectual Merit and Broader Impacts are not explicitly signposted"
+  - "The application lacks a coherent long-term scientific trajectory"
+expected_pacing_notes: >
+  NSF GRFP readers look for both research promise and broader impact. Make Intellectual Merit
+  and Broader Impacts explicit, concrete, and connected across the application materials.

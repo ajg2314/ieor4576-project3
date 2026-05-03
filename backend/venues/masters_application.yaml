@@ -1,0 +1,18 @@
+venue: masters_application
+name: "Master's program application statement"
+expected_length_minutes: 0
+scoring_criteria:
+  - "Academic preparation for the program"
+  - "Clear motivation for graduate study at this level"
+  - "Fit with curriculum, labs, faculty, or professional goals"
+  - "Evidence of readiness through projects, work, coursework, or research exposure"
+  - "Specificity about the target program"
+common_rejection_reasons:
+  - "Motivation is generic or only career-status driven"
+  - "Program fit is reduced to ranking, location, or brand"
+  - "Statement lacks concrete evidence of readiness"
+  - "Goals are disconnected from the program's actual offerings"
+  - "Writing repeats resume bullets without reflection"
+expected_pacing_notes: >
+  State why this program and degree are the right next step, then connect preparation and goals
+  to specific program features. Keep the focus on readiness, fit, and trajectory.

@@ -1,0 +1,21 @@
+venue: neurips
+name: "NeurIPS / ICML / CVPR (ML conference)"
+expected_length_minutes: 12
+scoring_criteria:
+  - "Novelty and significance of the technical contribution"
+  - "Technical soundness and rigor of experiments"
+  - "Reproducibility — code, ablations, and hyperparameter details"
+  - "Clarity of writing and accessibility to the program committee"
+  - "Comparison to relevant baselines"
+common_rejection_reasons:
+  - "Contribution is incremental or unclear — reviewers cannot identify what is genuinely new"
+  - "Missing baselines or ablations that would validate the main claim"
+  - "Claims not supported by experiments — numbers do not match narrative"
+  - "Poor writing or unclear motivation in the abstract or introduction"
+  - "Related work inadequate — key prior work not discussed or cited"
+  - "Reproducibility issues — insufficient detail to replicate results"
+expected_pacing_notes: >
+  The contribution must be stated clearly within the first 90 seconds of a talk.
+  Budget: ~2 minutes motivation, ~4 minutes method, ~4 minutes results, ~2 minutes conclusion and future work.
+  Reviewers ask about ablations, baselines, and limitations in Q&A.
+  The abstract must answer: what problem, what approach, what result, and why better than prior work.

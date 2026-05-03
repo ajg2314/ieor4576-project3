@@ -1,0 +1,21 @@
+venue: job_talk
+name: "Faculty job talk (R1 research university)"
+expected_length_minutes: 50
+scoring_criteria:
+  - "Research depth and rigor — can this person sustain a research program?"
+  - "Research vision — is there a compelling 5-year agenda beyond the dissertation?"
+  - "Accessibility to non-experts — can the speaker reach a mixed-expertise committee?"
+  - "Teaching sense — does the speaker show awareness of pedagogy and student development?"
+  - "Intellectual confidence — can the speaker defend their work under hostile questions?"
+common_rejection_reasons:
+  - "Talk is too narrow — only dissertation work, no vision for an independent research agenda"
+  - "Lost non-experts in the first 10 minutes — too much jargon too early"
+  - "No future work section — committee cannot evaluate whether there is a sustained research program"
+  - "Cannot defend assumptions under questioning — weak on limitations and failure modes"
+  - "Talk ran long — poor time management signals inability to read a room"
+expected_pacing_notes: >
+  First 5 minutes must be accessible to every faculty member regardless of subfield.
+  State the big question before the technical approach — hire the person, not the paper.
+  Budget: ~10 minutes accessible motivation, ~20 minutes technical depth, ~10 minutes results, ~10 minutes future vision.
+  Leave 15 minutes for Q&A — hiring committees test intellectual resilience here.
+  End on future work, not a summary slide — committees are buying a research program, not a completed paper.

@@ -1,0 +1,19 @@
+venue: graduate_sop
+name: "Graduate statement of purpose"
+expected_length_minutes: 0
+scoring_criteria:
+  - "Research fit — the applicant connects prior work, future interests, and the target program"
+  - "Specificity — claims about the program are concrete, sourced, and not interchangeable"
+  - "Research maturity — the applicant can explain questions, methods, tradeoffs, and next steps"
+  - "Evidence — important claims are backed by projects, coursework, publications, or lived experience"
+  - "Narrative coherence — the statement has a clear intellectual trajectory rather than a CV list"
+common_rejection_reasons:
+  - "Generic program fit paragraph that could be sent to any school"
+  - "Names faculty without explaining a real research connection"
+  - "Overclaims expertise without evidence"
+  - "Focuses on prestige or personal admiration instead of intellectual fit"
+  - "Lists accomplishments without explaining what the applicant learned or wants to investigate next"
+expected_pacing_notes: >
+  Open with the applicant's research direction and evidence of preparation. Move quickly from
+  background to intellectual trajectory, then make program fit concrete with verified faculty,
+  labs, courses, or research themes. Avoid admissions probability claims.

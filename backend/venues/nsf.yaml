@@ -1,0 +1,21 @@
+venue: nsf
+name: "NSF CAREER / NSF standard grant proposal"
+expected_length_minutes: 0
+scoring_criteria:
+  - "Intellectual Merit — novelty, rigor, and potential to advance knowledge"
+  - "Broader Impacts — concrete benefit to society and training of students"
+  - "Feasibility — is the timeline and budget realistic for the proposed work"
+  - "PI qualification — track record and evidence of ability to execute"
+  - "Clarity of objectives — reviewers must extract specific aims quickly"
+common_rejection_reasons:
+  - "Broader impacts are an afterthought — generic language instead of specific commitments"
+  - "Objectives are vague — no measurable success criteria stated"
+  - "Timeline is unrealistic — too ambitious for the award period"
+  - "No clear evaluation plan — no way to know if the approach succeeded"
+  - "Introduction buries the problem — reviewers disengage before reaching the core idea"
+  - "PI has no demonstrated track record in the proposed area"
+expected_pacing_notes: >
+  The Specific Aims page is the most critical document — panelists decide whether to read further based on it alone.
+  First paragraph must state the problem, the gap, and why it matters. Second paragraph states the central hypothesis.
+  Each aim must be independently valuable in case one fails.
+  Broader impacts must be concrete and specific — not a generic sentence about training students.

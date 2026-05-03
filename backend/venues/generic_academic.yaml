@@ -1,0 +1,20 @@
+venue: generic_academic
+name: "Generic academic audience"
+expected_length_minutes: 0
+scoring_criteria:
+  - "Clarity of the main contribution"
+  - "Logical structure and flow"
+  - "Adequate motivation and context for the target audience"
+  - "Evidence supporting the claims"
+  - "Accessibility to the intended audience"
+common_rejection_reasons:
+  - "Unclear main contribution — reader cannot identify what is new"
+  - "Poor motivation — reader does not understand why this matters"
+  - "Disorganized structure — argument is hard to follow"
+  - "Jargon without explanation — loses non-specialist readers"
+  - "Claims not supported by evidence"
+expected_pacing_notes: >
+  State the motivation and contribution early — do not make the reader wait.
+  Ensure each section builds on the previous one.
+  Define technical terms before using them.
+  Match the level of detail to the audience's background.

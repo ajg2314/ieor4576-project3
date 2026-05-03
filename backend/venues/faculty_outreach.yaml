@@ -1,0 +1,18 @@
+venue: faculty_outreach
+name: "Prospective graduate advisor outreach email"
+expected_length_minutes: 0
+scoring_criteria:
+  - "Concise explanation of applicant background"
+  - "Specific, verified connection to the faculty member's research"
+  - "Clear ask that respects the professor's time"
+  - "Evidence that the email was written for this person, not mass-mailed"
+  - "Professional tone and readable structure"
+common_rejection_reasons:
+  - "Generic praise with no evidence of reading the professor's work"
+  - "Email is too long or buries the ask"
+  - "Applicant asks for admission help rather than research conversation"
+  - "Research fit is vague or based on outdated/incorrect information"
+  - "Tone is overly flattering, demanding, or informal"
+expected_pacing_notes: >
+  Keep the email short: who you are, why this professor specifically, one or two concrete fit
+  signals, and a clear low-friction ask. Verify any faculty or paper claims before including them.

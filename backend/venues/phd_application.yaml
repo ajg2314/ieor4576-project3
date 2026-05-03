@@ -1,0 +1,19 @@
+venue: phd_application
+name: "PhD application research-fit statement"
+expected_length_minutes: 0
+scoring_criteria:
+  - "Fit with current faculty research and lab directions"
+  - "Evidence of independent research potential"
+  - "Clear future research questions, not only broad interests"
+  - "Ability to discuss prior projects with technical and conceptual maturity"
+  - "Source-grounded program specificity"
+common_rejection_reasons:
+  - "Applicant names faculty who are not active/current at the program"
+  - "Research interests are too broad to indicate a plausible advisor fit"
+  - "Prior experience is summarized as tasks instead of research thinking"
+  - "The statement sounds like a prestige pitch rather than a research match"
+  - "Future direction is missing, vague, or disconnected from target faculty"
+expected_pacing_notes: >
+  The first third should establish research identity and preparation. The middle should show
+  evidence through one or two concrete projects. The final third should connect future questions
+  to verified faculty and program resources without promising admissions outcomes.
