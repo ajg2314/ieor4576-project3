@@ -1,6 +1,21 @@
 import { NextRequest } from "next/server";
+import { GoogleAuth } from "google-auth-library";
 
 const DEFAULT_API_URL = "http://localhost:8000";
+const auth = new GoogleAuth();
+
+async function getAuthorizationHeader(apiUrl: string): Promise<string | null> {
+  const audience = process.env.IAP_CLIENT_ID || apiUrl;
+  try {
+    const client = await auth.getIdTokenClient(audience);
+    const headers = await client.getRequestHeaders(apiUrl);
+    const authorization = headers.get("authorization");
+    return typeof authorization === "string" ? authorization : null;
+  } catch (error) {
+    console.error("Failed to obtain backend identity token", error);
+    return null;
+  }
+}
 
 async function proxy(
   request: NextRequest,
@@ -12,6 +27,11 @@ async function proxy(
 
   const headers = new Headers(request.headers);
   headers.delete("host");
+  headers.delete("authorization");
+  const authorization = await getAuthorizationHeader(apiUrl);
+  if (authorization) {
+    headers.set("authorization", authorization);
+  }
 
   const body =
     request.method === "GET" || request.method === "HEAD"
