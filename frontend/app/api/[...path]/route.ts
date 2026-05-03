@@ -4,8 +4,25 @@ import { GoogleAuth } from "google-auth-library";
 const DEFAULT_API_URL = "http://localhost:8000";
 const auth = new GoogleAuth();
 
+function isLocalApiUrl(apiUrl: string): boolean {
+  try {
+    const { hostname } = new URL(apiUrl);
+    return hostname === "localhost" || hostname === "127.0.0.1" || hostname === "::1";
+  } catch {
+    return false;
+  }
+}
+
 async function getAuthorizationHeader(apiUrl: string): Promise<string | null> {
-  const audience = process.env.IAP_CLIENT_ID || apiUrl;
+  if (isLocalApiUrl(apiUrl)) {
+    return null;
+  }
+
+  const audience = process.env.IAP_CLIENT_ID?.trim();
+  if (!audience) {
+    console.error("IAP_CLIENT_ID is required for authenticated backend proxy calls");
+    return null;
+  }
   try {
     const client = await auth.getIdTokenClient(audience);
     const headers = await client.getRequestHeaders(apiUrl);
