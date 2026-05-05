@@ -1,8 +1,12 @@
 import asyncio
+import logging
+import os
 import uuid
 from typing import TypedDict
 
 from langgraph.graph import StateGraph, END
+
+logger = logging.getLogger(__name__)
 
 from backend.models.schemas import (
     InputDocument, UserContext, ContentAnalysis,
@@ -212,8 +216,22 @@ async def run_application_pipeline(
     session_id = str(uuid.uuid4())
     venue_context = get_venue_context(context.venue)
     sources = await research_program_sources(target)
+
+    dossiers = []
+    if os.getenv("STORYCOACH_FACULTY_ENRICH") == "1" and sources:
+        from backend.utils.faculty_enrichment import enrich_faculty_dossiers
+        timeout = float(os.getenv("STORYCOACH_FACULTY_ENRICH_TIMEOUT", "25"))
+        try:
+            dossiers = await asyncio.wait_for(
+                enrich_faculty_dossiers(target, sources),
+                timeout=timeout,
+            )
+        except (asyncio.TimeoutError, Exception) as exc:
+            logger.warning("Faculty enrichment failed/timed out (%s); falling back to base flow", exc)
+            dossiers = []
+
     application_fit = await run_application_coach(
-        document, context, target, sources, venue_context
+        document, context, target, sources, venue_context, dossiers=dossiers
     )
 
     initial_state: AgentState = {

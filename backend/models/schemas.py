@@ -204,12 +204,30 @@ class ApplicationTarget(BaseModel):
     school_name: str = ""
     program_name: str = ""
     program_url: str = ""
+    department_name: str = ""
     research_interests: list[str] = []
 
     @field_validator("research_interests", mode="before")
     @classmethod
     def coerce_str_list(cls, v: Any) -> list[str]:
         return _coerce_str_list(v) if isinstance(v, list) else v
+
+
+class Publication(BaseModel):
+    title: str = ""
+    year: int = 0
+    venue: str = ""
+    url: str = ""
+    arxiv_id: str = ""
+
+
+class Grant(BaseModel):
+    title: str = ""
+    agency: str = ""  # NSF | NIH
+    award_id: str = ""
+    start_year: int = 0
+    end_year: int = 0
+    url: str = ""
 
 
 class FacultyRecord(BaseModel):
@@ -219,6 +237,8 @@ class FacultyRecord(BaseModel):
     lab_url: str = ""
     research_areas: list[str] = []
     evidence_snippets: list[str] = []
+    recent_publications: list[Publication] = []
+    active_grants: list[Grant] = []
     retrieved_at: str = ""
     verification_status: str = "unverified"  # verified | partial | unverified
 
@@ -226,6 +246,10 @@ class FacultyRecord(BaseModel):
     @classmethod
     def coerce_str_list(cls, v: Any) -> list[str]:
         return _coerce_str_list(v) if isinstance(v, list) else v
+
+
+class FacultyDossier(FacultyRecord):
+    area_match_score: float = 0.0
 
 
 class FacultyFitMatch(BaseModel):

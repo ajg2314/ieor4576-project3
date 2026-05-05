@@ -21,7 +21,12 @@ Rules:
 - executive_summary must be 2–3 sentences: what works, what the top problem is, and the single most important fix
 - top_issues must list the 5 most impactful issues, each with priority, agents_flagging, quoted_passage, venue_grounding, and suggested_fix
 - venue_grounding must explain why this specific issue matters for the stated venue's norms — be concrete
-- venue_fit_verdict: judge whether this document would clear the bar at this venue
+- venue_fit_verdict: judge whether this document would clear the bar at this venue using the calibrated rubric below
+- Do not make the verdict harsher than the audience evidence supports. If all or most audience personas are positive/engaged and the problems are fixable revision issues, the verdict should usually be "at_bar", not "below_bar".
+- Use "below_bar" only when there is a fatal or near-fatal venue risk: unclear core contribution, missing motivation, unverified/unsupported central claims, severe audience confusion across multiple personas, or a mismatch with the assignment/venue that would likely cause rejection.
+- Use "at_bar" when the document is credible for the venue and audiences respond positively, but it still needs concrete improvements before submission or delivery.
+- Use "above_bar" when the document is clearly strong for the venue, has a compelling contribution/story, and remaining issues are minor polish rather than structural risks.
+- venue_fit_confidence should be "low" when positive audience reactions and serious issue lists point in different directions.
 - Return only valid JSON matching the schema below
 
 Output schema:
@@ -101,6 +106,11 @@ Program-specific rewrite points: {application_fit.program_specific_rewrite_point
 """
 
     venue_block = venue_context.to_prompt_block() if venue_context else ""
+    audience_balance = "\n".join(
+        f"- {p.persona_name}: overall={p.overall_reaction[:360]}; "
+        f"interest={p.interest_points[:3]}; confusion={p.confusion_points[:3]}"
+        for p in personas
+    )
 
     user_message = f"""Document type: {document.doc_type}
 Target audience: {context.audience_type}
@@ -110,8 +120,15 @@ CONTENT ANALYSIS:
 Main claim: {content_analysis.main_claim}
 Motivation quality: {content_analysis.motivation_quality}
 
+DOCUMENT STRENGTHS:
+Narrative strengths: {narrative.strengths}
+Audience interest points: {[point for p in personas for point in p.interest_points][:8]}
+
 ALL FLAGGED ISSUES (deduplicate and rank these):
 {chr(10).join(all_issues[:35])}
+
+AUDIENCE REACTION BALANCE (use this to calibrate the overall verdict):
+{audience_balance}
 
 TOP REVISION PRIORITIES (from Revision Planner):
 {revision_plan.top_priorities}
@@ -122,7 +139,7 @@ TOP REVISION PRIORITIES (from Revision Planner):
 {document.raw_text[:1200]}
 --- END ---
 
-Synthesize the top 5 issues and return JSON."""
+Synthesize the top 5 issues and return JSON. Make the venue_fit_verdict reflect the whole evidence record: audience engagement, strengths, severity of issues, and venue expectations."""
 
     response = await acompletion_with_retry(
         model="vertex_ai/gemini-2.5-pro",

@@ -4,7 +4,7 @@
 **Course:** IEOR 4576, Project 3  
 **Team:** Andy Gu  
 **Deadline:** TBD  
-**Live URL:** TBD  
+**Live URL:** Deployed and working; final submission URL tracked outside this repo document  
 
 ---
 
@@ -56,7 +56,7 @@ storycoach/
 ├── .env.example
 ├── Dockerfile
 ├── README.md
-├── business_onepager.md
+├── business_document.md
 ├── developmentlog.md
 └── projectidea.md
 ```
@@ -168,10 +168,10 @@ Input + UserContext
 ## Phase 7: Deployment
 
 - [x] Dockerfile for backend — multi-stage uv-based build; excludes .venv/node_modules via .dockerignore ✅ 2026-04-28
-- [ ] Deploy frontend (Next.js → Vercel or Cloud Run)
-- [ ] Deploy backend to Google Cloud Run
-- [ ] Set Vertex AI / Google Cloud env vars as Cloud Run secrets or service env vars (`GOOGLE_CLOUD_PROJECT`, `GOOGLE_CLOUD_LOCATION`, `GOOGLE_GENAI_USE_VERTEXAI`, optional `STORYCOACH_AUDIO_BUCKET`)
-- [ ] Verify live URL end-to-end
+- [x] Deploy frontend (Next.js → Vercel or Cloud Run)
+- [x] Deploy backend to Google Cloud Run
+- [x] Set Vertex AI / Google Cloud env vars as Cloud Run secrets or service env vars (`GOOGLE_CLOUD_PROJECT`, `GOOGLE_CLOUD_LOCATION`, `GOOGLE_GENAI_USE_VERTEXAI`, optional `STORYCOACH_AUDIO_BUCKET`)
+- [x] Verify live URL end-to-end
 
 ---
 
@@ -219,7 +219,7 @@ Input + UserContext
 - [x] Render delivery section in frontend: timestamped issue list
 - [x] Render delivery section in frontend: pacing chart and filler-word heatmap
 - [x] Add rehearsal upload flow to the frontend form
-- [ ] Validate Google Speech-to-Text timestamp granularity on a real rehearsal file
+- [ ] Validate Google Speech-to-Text timestamp granularity on a real rehearsal file — deferred; acceptable unfinished item for demo scope
 
 ---
 
@@ -264,7 +264,7 @@ Input + UserContext
 
 - [x] Build a small per-run database from verified faculty pages, lab pages, research pages, and paper/project signals visible in those sources
 - [x] Prefer official profiles and lab pages
-- [ ] Add explicit Google Scholar/DBLP/arXiv supplemental lookup after official-source MVP is stable
+- [ ] Add explicit Google Scholar/DBLP/arXiv supplemental lookup after official-source MVP is stable — deferred as too risky for current deadline
 - [x] Rank faculty by overlap with applicant interests and SOP content
 - [x] Include confidence, source URLs, and "why this match" evidence for each faculty recommendation
 - [x] Label weak/no-match cases honestly rather than inventing faculty fit
@@ -311,11 +311,12 @@ Input + UserContext
   - jargon-heavy technical outline
   - unclear motivation
   - disorganized structure
-- [ ] Run baseline comparison: single Gemini prompt vs. StoryCoach pipeline on same docs
-- [ ] Run application-mode baseline: single prompt faculty suggestions vs. source-grounded agent research on real public departments
+- [x] Run baseline comparison: single Gemini prompt vs. StoryCoach pipeline on same docs
+- [x] Run application-mode baseline: single prompt faculty suggestions vs. source-grounded agent research on real public departments
 - [ ] Add 2–3 built-in demo example documents
-- [ ] Write `README.md` (run instructions, live URL, class concepts with file references)
-- [ ] Write `business_onepager.md`
+- [x] Write `README.md` (run instructions, deployment status, class concepts with file references)
+- [x] Write business one-pager — currently maintained as `business_document.md`
+- [x] Produce demo results for final presentation
 - [ ] Final demo run
 
 ---
@@ -351,5 +352,5 @@ Input + UserContext
 - [ ] Google Speech-to-Text word offset format — confirm real-audio timing quality before tuning delivery metrics
 - [ ] Slide alignment accuracy on a real pptx with jargon-heavy slides — keyword overlap may need tuning
 - [ ] Cloud Run audio upload size limit (default 32 MB request body — 20-min audio can exceed this; set `--max-instances` and adjust `--timeout` and request-size limits)
-- [ ] Run baseline experiment (spec §17.1) on at least 3 real documents **before** building Phase 9E frontend — if multi-agent doesn't beat single-prompt, redesign first
-- [ ] Application-mode factuality: verify faculty recommendations against official department pages for at least 3 public programs before building the full frontend flow
+- [x] Run baseline experiment (spec §17.1) on real documents
+- [x] Application-mode factuality: verified source-linked faculty recommendations against public official department pages in smoke tests

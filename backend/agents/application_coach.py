@@ -1,12 +1,36 @@
 from datetime import datetime, timezone
 
 from backend.models.schemas import (
-    ApplicationFitReport, ApplicationTarget, FacultyFitMatch, FacultyRecord,
-    InputDocument, UserContext, VenueContext,
+    ApplicationFitReport, ApplicationTarget, FacultyDossier, FacultyFitMatch,
+    FacultyRecord, InputDocument, UserContext, VenueContext,
 )
 from backend.utils.json_parse import parse_llm_json
 from backend.utils.program_research import ResearchSource, sources_prompt_block
 from backend.utils.throttle import acompletion_with_retry
+
+
+def _format_dossiers_block(dossiers: list[FacultyDossier]) -> str:
+    if not dossiers:
+        return ""
+    cards: list[str] = []
+    for i, d in enumerate(dossiers, 1):
+        lines = [f"[Faculty {i}] {d.name}"]
+        if d.profile_url:
+            lines.append(f"  Profile: {d.profile_url}")
+        if d.evidence_snippets:
+            lines.append(f"  Areas/blurb: {d.evidence_snippets[0][:300]}")
+        if d.recent_publications:
+            lines.append("  Recent papers:")
+            for pub in d.recent_publications[:3]:
+                year = f" ({pub.year})" if pub.year else ""
+                lines.append(f"    - {pub.title}{year} {pub.url}".rstrip())
+        if d.active_grants:
+            lines.append("  Active/recent grants:")
+            for grant in d.active_grants[:3]:
+                span = f" {grant.start_year}-{grant.end_year}" if grant.start_year else ""
+                lines.append(f"    - [{grant.agency} {grant.award_id}]{span} {grant.title}".rstrip())
+        cards.append("\n".join(lines))
+    return "\n\n".join(cards)
 
 SYSTEM_PROMPT = """You are an academic application fit coach and source-grounded program researcher.
 You evaluate statements of purpose, research statements, fellowship essays, and faculty outreach emails.
@@ -116,6 +140,7 @@ async def run_application_coach(
     target: ApplicationTarget,
     sources: list[ResearchSource],
     venue_context: VenueContext | None = None,
+    dossiers: list[FacultyDossier] | None = None,
 ) -> ApplicationFitReport:
     if not sources:
         return _fallback_report(target)
@@ -123,6 +148,7 @@ async def run_application_coach(
     venue_block = venue_context.to_prompt_block() if venue_context else ""
     retrieved_at = datetime.now(timezone.utc).isoformat()
     interests = ", ".join(target.research_interests) if target.research_interests else "not specified"
+    dossier_block = _format_dossiers_block(dossiers) if dossiers else ""
 
     user_message = f"""Document type: {document.doc_type}
 Application target:
@@ -137,7 +163,7 @@ Retrieved at: {retrieved_at}
 
 SOURCE-GROUNDED PROGRAM EVIDENCE:
 {sources_prompt_block(sources)}
-
+{f"{chr(10)}FACULTY DOSSIERS (recent papers + active grants):{chr(10)}{dossier_block}{chr(10)}" if dossier_block else ""}
 --- APPLICATION DRAFT ---
 {document.raw_text}
 --- END APPLICATION DRAFT ---
