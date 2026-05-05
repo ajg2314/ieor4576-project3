@@ -145,9 +145,3 @@ Important documentation:
 - [business_document.md](business_document.md): business one-pager, target users, economics, and technical choices.
 - [developmentlog.md](developmentlog.md): build phases, completed work, deferred work, and validation checklist.
 
-Known remaining work:
-
-- Continue prompt tuning on the five planned test documents.
-- Validate real rehearsal Speech-to-Text timestamp granularity.
-- Add built-in demo documents if time allows.
-- Run the final demo pass.
